@@ -5,7 +5,9 @@ using UnityEngine;
 public class Hacker : MonoBehaviour
 {
 	// Game State
-	int	Level = 0;
+	int		Level = 0;
+	enum	Screen { MainMenu, Password, Win };
+	Screen	CurrentScreen = Screen.MainMenu;
 
 	// Start is called before the first frame update
 	void Start()
@@ -25,6 +27,18 @@ public class Hacker : MonoBehaviour
 
 	void	OnUserInput(string Input)
 	{
+		if (Input.ToLower() == "menu")
+		{
+			PrintMenu();
+		}
+		else if (CurrentScreen == Screen.MainMenu)
+		{
+			RunMainMenu(Input);
+		}
+	}
+
+	void	RunMainMenu(string Input)
+	{
 		if (Input == "1")
 		{
 			Level = 1;
@@ -40,10 +54,6 @@ public class Hacker : MonoBehaviour
 			Level = 3;
 			StartGame();
 		}
-		else if (Input.ToLower() == "menu")
-		{
-			PrintMenu();
-		}
 		else if (Input == "rm -rf /")
 		{
 			Terminal.WriteLine("Are you sure you want to delete the database?");
@@ -56,6 +66,8 @@ public class Hacker : MonoBehaviour
 
 	void	StartGame()
 	{
+		CurrentScreen = Screen.Password;
 		Terminal.WriteLine("You've chosen level: " + Level);
+		Terminal.WriteLine("Please enter your password");
 	}
 }
