@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class Hacker : MonoBehaviour
 {
+	// Game Configuration
+	string[]	Password_Level_01 = { "chairs", "tables", "books", "tables", "exam" };
+	string[]	Password_Level_02 = { "handcuffs", "holster", "weapons" };
+	string[]	Password_Level_03 = { "quantum", "gravity", "mathematics" };
+	Random		Rand = new Random();
+	int			Index = Rand.Next();
+
 	// Game State
-	int		Level = 0;
-	enum	Screen { MainMenu, Password, Win };
-	Screen	CurrentScreen;
-	string	Password;
+	int			Level = 0;
+	enum		Screen { MainMenu, Password, Win };
+	Screen		CurrentScreen;
+	string		Password;
 
 	// Start is called before the first frame update
 	void Start()
@@ -54,19 +61,19 @@ public class Hacker : MonoBehaviour
 		if (Input == "1")
 		{
 			Level = 1;
-			Password = "one";
+			Password = Password_Level_01[0];
 			StartGame();
 		}
 		else if (Input == "2")
 		{
 			Level = 2;
-			Password = "two";
+			Password = Password_Level_02[0];
 			StartGame();
 		}
 		else if (Input == "3")
 		{
 			Level = 3;
-			Password = "three";
+			Password = Password_Level_03[0];
 			StartGame();
 		}
 		else if (Input == "rm -rf /")
