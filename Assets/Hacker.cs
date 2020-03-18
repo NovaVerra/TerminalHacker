@@ -44,6 +44,7 @@ public class Hacker : MonoBehaviour
 		}
 		else if (Input.ToLower() == "close" || Input.ToLower() == "exit" || Input.ToLower() == "quit")
 		{
+			Terminal.WriteLine("If on web, close tab to quit");
 			Application.Quit();
 		}
 		else if (CurrentScreen == Screen.MainMenu)
