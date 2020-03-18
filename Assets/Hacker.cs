@@ -2,18 +2,18 @@
 
 public class Hacker : MonoBehaviour
 {
-	// Game Configuration
+	/** Game Configuration */
 	string[]	Password_Level_01 = { "chairs", "tables", "books", "tables", "exam" };
 	string[]	Password_Level_02 = { "handcuffs", "holster", "weapons" };
 	string[]	Password_Level_03 = { "quantum", "gravity", "mathematics" };
 
-	// Game State
+	/** Game State */
 	int			Level = 0;
 	enum		Screen { MainMenu, Password, Win };
 	Screen		CurrentScreen;
 	string		Password;
 
-	// Start is called before the first frame update
+	/** Start is called before the first frame update */
 	void Start()
 	{
 		PrintMenu();
@@ -59,7 +59,7 @@ public class Hacker : MonoBehaviour
 		if (bIsValidLevel)
 		{
 			Level = int.Parse(Input);
-			StartGame();
+			AskPassword();
 		}
 		else if (Input == "rm -rf /")
 		{
@@ -76,18 +76,66 @@ public class Hacker : MonoBehaviour
 	{
 		if (Input == Password)
 		{
-			Terminal.WriteLine("Authentication Successful...");
+			DisplayWinScreen();
 		}
 		else
 		{
-			Terminal.WriteLine("Incorrect password, please retry...");
+			Terminal.WriteLine("Please retry..." + Password.Anagram());
 		}
 	}
 
-	void	StartGame()
+	void	DisplayWinScreen()
+	{
+		CurrentScreen = Screen.Win;
+		Terminal.ClearScreen();
+		ShowLevelReward();
+	}
+
+	void	ShowLevelReward()
+	{
+		switch (Level)
+		{
+			case 1:
+				Terminal.WriteLine("Have a book...");
+				Terminal.WriteLine(@"
+	_______
+   /      /,
+  /      //
+ /______//
+(______(/
+				");
+				break;
+			case 2:
+				Terminal.WriteLine("Have a key...");
+				Terminal.WriteLine(@"
+ 8 8 8 8                     ,ooo.
+ 8a8 8a8                    oP   ?b
+d888a888zzzzzzzzzzzzzzzzzzzz8     8b
+ `""^""'                    ?o___oP'
+				");
+				break;
+			case 3:
+				Terminal.WriteLine("Have the launch code...");
+				Terminal.WriteLine(@"
+246107
+				");
+				break;
+			default:
+				Debug.LogError("Invalid level reached");
+				break;
+		}
+	}
+
+	void	AskPassword()
 	{
 		CurrentScreen = Screen.Password;
 		Terminal.ClearScreen();
+		SetRandomPassword();
+		Terminal.WriteLine("Please enter your password");
+	}
+
+	void	SetRandomPassword()
+	{
 		switch (Level)
 		{
 			case 1:
@@ -103,6 +151,5 @@ public class Hacker : MonoBehaviour
 				Debug.LogError("Invalid level number.");
 				break;
 		}
-		Terminal.WriteLine("Please enter your password");
 	}
 }
