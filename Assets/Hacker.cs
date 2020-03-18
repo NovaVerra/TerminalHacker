@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Hacker : MonoBehaviour
 {
@@ -93,13 +91,13 @@ public class Hacker : MonoBehaviour
 		switch (Level)
 		{
 			case 1:
-				Password = Password_Level_01[0];
+				Password = Password_Level_01[Random.Range(0, Password_Level_01.Length)];
 				break;
 			case 2:
-				Password = Password_Level_02[0];
+				Password = Password_Level_02[Random.Range(0, Password_Level_02.Length)];
 				break;
 			case 3:
-				Password = Password_Level_03[0];
+				Password = Password_Level_03[Random.Range(0, Password_Level_03.Length)];
 				break;
 			default:
 				Debug.LogError("Invalid level number.");
