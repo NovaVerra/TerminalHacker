@@ -115,9 +115,12 @@ d888a888zzzzzzzzzzzzzzzzzzzz8     8b
 				");
 				break;
 			case 3:
-				Terminal.WriteLine("Have the launch code...");
+				Terminal.WriteLine("NASA internal systems...");
 				Terminal.WriteLine(@"
-246107
+ _ __   __ _ ___  __ _ 
+| '_ \ / _` / __|/ _` |
+| | | | (_| \__ \ (_| |
+|_| |_|\__,_|___/\__,_|
 				");
 				break;
 			default:
