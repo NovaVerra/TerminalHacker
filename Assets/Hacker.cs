@@ -132,6 +132,7 @@ d888a888zzzzzzzzzzzzzzzzzzzz8     8b
 				Debug.LogError("Invalid level reached");
 				break;
 		}
+		Terminal.WriteLine("Type \"menu\" to play again");
 	}
 
 	void	AskPassword()
@@ -140,6 +141,7 @@ d888a888zzzzzzzzzzzzzzzzzzzz8     8b
 		Terminal.ClearScreen();
 		SetRandomPassword();
 		Terminal.WriteLine("Please enter your password");
+		Terminal.WriteLine("Hint: " + Password.Anagram());
 	}
 
 	void	SetRandomPassword()
